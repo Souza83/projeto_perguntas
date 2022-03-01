@@ -1,4 +1,4 @@
-//import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /*Pode ser implementado da forma abaixo ou a seguir
@@ -9,9 +9,10 @@ main() => runApp(PerguntaApp());
 
 //Cria classe (extends: demonstra que há herança)
 class PerguntaApp extends StatelessWidget {
-  void responder(){
-    print('Pergunta respondida.')
+  void responder() {
+    print('Pergunta respondida.');
   }
+
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
   Widget build(BuildContext context) {
     final perguntas = [
@@ -28,16 +29,18 @@ class PerguntaApp extends StatelessWidget {
           children: [
             Text(perguntas[0]),
             ElevatedButton(
-              child: Text('Resposta 1'),
+              child: Text('Resposta 01'),
               onPressed: responder,
             ),
             ElevatedButton(
-              child: Text('Resposta 2'),
-              onPressed: responder,
+              child: Text('Resposta 02'),
+              onPressed: () {
+                print('Resposta 2 foi selecionada!');
+              },
             ),
             ElevatedButton(
-              child: Text('Resposta 3'),
-              onPressed: responder,
+              child: Text('Resposta 03'),
+              onPressed: () => print('Resposta 3!!!'),
             ),
           ],
         ),
