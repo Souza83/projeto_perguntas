@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 /*Pode ser implementado da forma abaixo ou a seguir
@@ -7,11 +7,14 @@ main() {
 }*/
 main() => runApp(PerguntaApp());
 
-//Cria classe (extends: demonstra que há herança)
-class PerguntaApp extends StatelessWidget {
+class PerguntaAppState extends State<PerguntaApp> {
   var perguntaSelecionada = 0;
+
   void responder() {
-    perguntaSelecionada++; //operador unário de incremento
+    setState(() {
+      perguntaSelecionada++; //operador unário de incremento
+    });
+
     print(perguntaSelecionada);
   }
 
@@ -46,5 +49,12 @@ class PerguntaApp extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+//Cria classe (extends: demonstra que há herança)
+class PerguntaApp extends StatefulWidget {
+  PerguntaAppState createState() {
+    return PerguntaAppState();
   }
 }
