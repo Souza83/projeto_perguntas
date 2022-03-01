@@ -1,5 +1,5 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'questao.dart';
 
 /*Pode ser implementado da forma abaixo ou a seguir
 main() {
@@ -32,7 +32,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Text(perguntas[_perguntaSelecionada]),
+            Questao(perguntas[_perguntaSelecionada]),
             ElevatedButton(
               child: Text('Resposta 01'),
               onPressed: _responder,
