@@ -9,8 +9,10 @@ main() => runApp(PerguntaApp());
 
 //Cria classe (extends: demonstra que há herança)
 class PerguntaApp extends StatelessWidget {
+  var perguntaSelecionada = 0;
   void responder() {
-    print('Pergunta respondida.');
+    perguntaSelecionada++; //operador unário de incremento
+    print(perguntaSelecionada);
   }
 
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
@@ -27,20 +29,18 @@ class PerguntaApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text(perguntas[0]),
+            Text(perguntas[perguntaSelecionada]),
             ElevatedButton(
               child: Text('Resposta 01'),
               onPressed: responder,
             ),
             ElevatedButton(
               child: Text('Resposta 02'),
-              onPressed: () {
-                print('Resposta 2 foi selecionada!');
-              },
+              onPressed: responder,
             ),
             ElevatedButton(
               child: Text('Resposta 03'),
-              onPressed: () => print('Resposta 3!!!'),
+              onPressed: responder,
             ),
           ],
         ),
