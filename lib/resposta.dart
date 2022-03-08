@@ -11,9 +11,15 @@ class Resposta extends StatelessWidget {
     return Container(
       width: double.infinity, //Estica o Botão na largura do container
       child: ElevatedButton(
-        //textColor: Colors.white,
-        //color: Colors.blue,
-        child: Text(texto),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.blue,
+        ),
+        child: Text(
+          texto,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         onPressed: quandoSelecionado,
       ),
     );

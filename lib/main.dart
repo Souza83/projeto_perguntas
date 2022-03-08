@@ -15,8 +15,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       _perguntaSelecionada++; //operador unário de incremento
     });
-
-    print(_perguntaSelecionada);
   }
 
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
@@ -35,6 +33,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
         'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
       },
     ];
+
+    List<Widget> respostas = [];
+
+    for (var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
+      respostas.add(Resposta(textoResp, _responder));
+    }
+
     return MaterialApp(
       home: Scaffold(
         //Inicia a estrutura da aplicação
@@ -44,9 +49,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            Resposta('Resposta 1', _responder),
-            Resposta('Resposta 2', _responder),
-            Resposta('Resposta 3', _responder),
+            ...respostas, // ...: Esse operador Spred que adiciona lista à lista
           ], // children
         ),
       ),
