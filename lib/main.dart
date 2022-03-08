@@ -25,20 +25,17 @@ class _PerguntaAppState extends State<PerguntaApp> {
         'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
       },
       {
-        'texto': 'Qual sua cor favorita?',
+        'texto': 'Qual seu animal favorito?',
         'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
       },
       {
-        'texto': 'Qual sua cor favorita?',
+        'texto': 'Qual seu instrutor favorito?',
         'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
       },
     ];
 
-    List<Widget> respostas = [];
-
-    for (var textoResp in perguntas[_perguntaSelecionada].cast()['respostas']) {
-      respostas.add(Resposta(textoResp, _responder));
-    }
+    List<String> respostas =
+        perguntas[_perguntaSelecionada].cast()['respostas'];
 
     return MaterialApp(
       home: Scaffold(
@@ -49,7 +46,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
         body: Column(
           children: [
             Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...respostas, // ...: Esse operador Spred que adiciona lista à lista
+            ...respostas.map((t) => Resposta(t, _responder)).toList(),
           ], // children
         ),
       ),
