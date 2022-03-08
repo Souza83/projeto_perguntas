@@ -10,32 +10,38 @@ main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  final _perguntas = const [
+    {
+      'texto': 'Qual sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      'texto': 'Qual seu instrutor favorito?',
+      'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+    },
+  ];
 
   void _responder() {
-    setState(() {
-      _perguntaSelecionada++; //operador unário de incremento
-    });
+    if (temPerguntaSelecionada) {
+      setState(() {
+        _perguntaSelecionada++; //operador unário de incremento
+      });
+    }
+  }
+
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
   }
 
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
   Widget build(BuildContext context) {
-    final perguntas = [
-      {
-        'texto': 'Qual sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
-      },
-      {
-        'texto': 'Qual seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
-      },
-      {
-        'texto': 'Qual seu instrutor favorito?',
-        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
-      },
-    ];
-
-    List<String> respostas =
-        perguntas[_perguntaSelecionada].cast()['respostas'];
+    List<String> respostas = temPerguntaSelecionada
+        ? _perguntas[_perguntaSelecionada].cast()['respostas']
+        : []; //Componente null (nulo)
 
     return MaterialApp(
       home: Scaffold(
@@ -43,12 +49,14 @@ class _PerguntaAppState extends State<PerguntaApp> {
         appBar: AppBar(
           title: Center(child: Text('Perguntas')),
         ),
-        body: Column(
-          children: [
-            Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-            ...respostas.map((t) => Resposta(t, _responder)).toList(),
-          ], // children
-        ),
+        body: temPerguntaSelecionada
+            ? Column(
+                children: [
+                  Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
+                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
+                ], // children
+              )
+            : null,
       ),
     );
   }
