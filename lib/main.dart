@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import './questionario.dart';
 import './resultado.dart';
 
-/*Pode ser implementado da forma abaixo ou a seguir
-main() {
-  runApp(PerguntaApp());
-}*/
 main() => runApp(PerguntaApp());
 
 class _PerguntaAppState extends State<PerguntaApp> {
@@ -40,10 +35,6 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
   Widget build(BuildContext context) {
-    List<String> respostas = temPerguntaSelecionada
-        ? _perguntas[_perguntaSelecionada].cast()['respostas']
-        : []; //Componente null (nulo)
-
     return MaterialApp(
       home: Scaffold(
         //Inicia a estrutura da aplicação
@@ -51,11 +42,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
           title: Center(child: Text('Perguntas')),
         ),
         body: temPerguntaSelecionada
-            ? Column(
-                children: [
-                  Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
-                  ...respostas.map((t) => Resposta(t, _responder)).toList(),
-                ], // children
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                quandoResponder: _responder,
               )
             : Resultado(), //
       ),
