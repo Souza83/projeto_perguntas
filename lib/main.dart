@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'questao.dart';
+import './questao.dart';
 import './resposta.dart';
+import './resultado.dart';
 
 /*Pode ser implementado da forma abaixo ou a seguir
 main() {
@@ -58,12 +57,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                   ...respostas.map((t) => Resposta(t, _responder)).toList(),
                 ], // children
               )
-            : Center(
-                child: Text(
-                  'Parabéns!!!',
-                  style: TextStyle(fontSize: 28),
-                ),
-              ),
+            : Resultado(), //
       ),
     );
   }
