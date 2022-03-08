@@ -22,8 +22,18 @@ class _PerguntaAppState extends State<PerguntaApp> {
   @override //Decorador que demonstra ao StatelessWidget é obrigado implementar
   Widget build(BuildContext context) {
     final perguntas = [
-      'Qual sua cor favorita?',
-      'Qual seu animal favorito?',
+      {
+        'texto': 'Qual sua cor favorita?',
+        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      },
+      {
+        'texto': 'Qual sua cor favorita?',
+        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+      },
+      {
+        'texto': 'Qual sua cor favorita?',
+        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -33,10 +43,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Questao(perguntas[_perguntaSelecionada]),
-            Resposta('Resposta 1'),
-            Resposta('Resposta 2'),
-            Resposta('Resposta 3'),
+            Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
+            Resposta('Resposta 1', _responder),
+            Resposta('Resposta 2', _responder),
+            Resposta('Resposta 3', _responder),
           ], // children
         ),
       ),
