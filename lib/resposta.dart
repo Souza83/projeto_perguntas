@@ -9,6 +9,7 @@ class Resposta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(5),
       width: double.infinity, //Estica o Botão na largura do container
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
